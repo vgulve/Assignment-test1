@@ -11,7 +11,7 @@ test('Send Chat Message', async ({ page }) => {
   await page.click('text=Deja Brady'); 
   const messageInput = await page.$('input[name="message"]');
   if (messageInput) {
-    await messageInput.press('Hello, how are you?');
+    await messageInput.fill('Hello, how are you?');
     await page.click('button[type="submit"]');
 const sentMessage = await page.waitForSelector('.message.sent', { state: 'attached' });
 const sentMessageText = await sentMessage.textContent();

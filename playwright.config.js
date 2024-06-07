@@ -1,10 +1,8 @@
 // playwright.config.js
-// @ts-check
+
 const { defineConfig, devices } = require('@playwright/test');
 
-/**
- * @see https://playwright.dev/docs/test-configuration
- */
+
 module.exports = defineConfig({
   testDir: './tests',
   fullyParallel: true,
@@ -12,23 +10,15 @@ module.exports = defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
+  timeout: 120000, 
   use: {
     trace: 'on-first-retry',
+    navigationTimeout: 60000, 
   },
   projects: [
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
-    
-    
   ],
-
-  /* Run your local dev server before starting the tests */
-  // Uncomment and adjust if needed
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://127.0.0.1:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
 });
